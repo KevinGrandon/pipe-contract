@@ -7,6 +7,10 @@
     "type": "git",
     "url": "https://github.com/KevinGrandon/pipe-contract.git"
   },
+  "scripts": {
+    "test": "./node_modules/karma/bin/karma start test/karma.conf.js --single-run",
+    "test-dev": "./node_modules/karma/bin/karma start test/karma.conf.js"
+  },
   "author": "Kevin Grandon <kevingrandon@yahoo.com>",
   "license": "MPL",
   "bugs": {
@@ -14,6 +18,12 @@
   },
   "homepage": "https://github.com/KevinGrandon/pipe-contract",
   "dependencies": {
+    "karma": "^0.12.31",
+    "karma-firefox-launcher": "^0.1.4",
+    "karma-mocha": "^0.1.10",
+    "karma-sinon-chai": "^0.3.0",
+    "mocha": "^2.1.0",
+    "mozilla-download": "^0.4.6",
     "pipe-core": "^1.0.1"
   }
 }
