@@ -13,16 +13,38 @@ var PipeContract = {
     var oldRequest = pipe.request;
     pipe.request = function(resource, params) {
 
+      if (!contract || !Object.keys(contract)) {
+        throw new Error('Empty contract supplied.');
+      }
+
+      var definition = contract[resource];
+
       // Validate that we have a definition for this resource.
-      if (!contract[resource]) {
+      if (!definition) {
         throw new Error('Resource not found in contract.');
       }
 
-      // Validate worker context.
-      // ...
-
       // Validate param list.
       // ...
+
+      // Validate worker context.
+      if (definition.args) {
+        for (var i in definition.args) {
+          if (!params || !params[i]) {
+            throw new Error('Missing argument ', i, ' in contract for resource ', resource);
+          } else if (params[i] === String && typeof params[i] !== "string") {
+            throw new Error('Expected string, but received ', typeof(params[i]), resource);
+          } else if (params[i] === Number && typeof params[i] !== "number") {
+            throw new Error('Expected number, but received ', typeof(params[i]), resource);
+          } else if (params[i] === Boolean && typeof params[i] !== "boolean") {
+            throw new Error('Expected boolean, but received ', typeof(params[i]), resource);
+          } else if (params[i] === Array && typeof !Array.isArray(params[i])) {
+            throw new Error('Expected array, but received ', typeof(params[i]), resource);
+          } else if (params[i] === Object && typeof params[i] !== "object") {
+            throw new Error('Expected object, but received ', typeof(params[i]), resource);
+          }
+        }
+      }
 
       // Return the original response.
       return oldRequest.apply(pipe, Array.slice(arguments));

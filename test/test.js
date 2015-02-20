@@ -10,7 +10,42 @@ suite('contract > ', function() {
     this.sinon.restore();
   });
 
-  suite('validates context > ', function() {
+  suite('validates method > ', function() {
+    var pipe;
+
+    var contract = {
+      getAll: {
+        context: 'Worker'
+      }
+    };
+
+    setup(function() {
+      pipe = new Pipe({src: '/base/test/worker.js'});
+      PipeContract.implement(pipe, contract);
+    });
+
+    teardown(function() {
+      pipe.terminate();
+    });
+
+    test('valid method', function(done) {
+      pipe.request('getAll').then(results => {
+        assert.equal(results.length, 3);
+        done();
+      });
+    });
+
+    test('invalid method', function(done) {
+      try {
+        pipe.request('INVALIDMETHOD').then(() => {});
+      } catch(e) {
+        // Should throw an error
+        done();
+      }
+    });
+  });
+
+  suite('validates params', function() {
     var pipe;
 
     var contract = {
@@ -31,36 +66,20 @@ suite('contract > ', function() {
       pipe.terminate();
     });
 
-    test('valid context', function(done) {
-      pipe.request('getAll').then(results => {
+    test('valid params', function(done) {
+      pipe.request('getAll', {filter: {startsWith: 'a'}}).then(results => {
         assert.equal(results.length, 3);
         done();
       });
     });
 
-    test('invalid context', function(done) {
+    test('invalid params', function(done) {
       try {
-        pipe.request('INVALIDMETHOD').then(() => {});
+        pipe.request('getAll', {invalidparam: false}).then(() => {});
       } catch(e) {
         // Should throw an error
         done();
       }
-    });
-  });
-
-  suite('validates params', function() {
-    setup(function() {
-    });
-
-    teardown(function() {
-    });
-
-    test('invalid params', function(done) {
-      done();
-    });
-
-    test('valid params', function(done) {
-      done();
     });
   });
 });
