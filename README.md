@@ -1,40 +1,47 @@
-# pipe-core
+# pipe-contract
 
-Pipe is a framework for creating fast and responsive HTML5 applications. It enables you to build an architecture which offloads work to Workers and SharedWorkers, and communicate easily between them.
+Pipe contract is a library which valides pipe methods and arguments. This protects developers and helps control API methods.
 
 ## Get the code
 ```
-bower install KevinGrandon/pipe.js
+bower install KevinGrandon/pipe-contract
 ```
 
 ## Example Usage
 
-*Include pipe.js in your page*
+*Include pipe-contract.js in your page*
 ```
 <script defer src="/bower_components/pipe-core/pipe.js"></script>
+<script defer src="/bower_components/pipe-contract/pipe-contract.js"></script>
 ```
 
-*Requesting data*
+*Usage*
 ```js
-var pipe = new Pipe({src: '/myworker.js'});
-pipe.request('myEventFetchSomeData').then(results => {
-  results.forEach(result => {
-    // Do something with the result.
-  });
-});
-
-```
-
-*Listening for data, from a worker*
-```js
-importScripts('/bower_components/pipe-core/pipe.js');
-
 var pipe = new Pipe();
+PipeContract.implement(pipe, contract);
+```
 
-pipe.handle('myEventFetchSomeData', () => {
-  return new Promise(resolve => {
-    resolve([/* ... */]);
-  });
-});
-
+*Example Contract Syntax*
+```js
+var contract = {
+  getAll: {
+    args: {
+      filter: Object
+    },
+    contexts: ['SharedWorker']
+  },
+  getOne: {
+    args: {
+      id: Number
+    },
+    contexts: ['Worker']
+  },
+  save: {
+    args: {
+      id: Number,
+      name: String
+    },
+    contexts: ['SharedWorker']
+  }
+};
 ```
