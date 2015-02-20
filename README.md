@@ -1,6 +1,6 @@
 # pipe-contract
 
-Pipe contract is a library which valides pipe methods and arguments. This protects developers and helps control API methods.
+Pipe contract is a library which validates pipe methods and arguments. This protects developers and helps control API methods.
 
 ## Get the code
 ```
