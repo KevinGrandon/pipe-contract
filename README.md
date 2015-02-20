@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/KevinGrandon/pipe-contract.svg?branch=master)](https://travis-ci.org/KevinGrandon/pipe-contract)
+
 # pipe-contract
 
 Pipe contract is a library which validates pipe methods and arguments. This protects developers and helps control API methods.
