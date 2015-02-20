@@ -1,0 +1,16 @@
+{
+  "name": "pipe-contract",
+  "version": "1.0.0",
+  "description": "Contract implementation for pipe-core. Validates methods and arguments for pipe events.",
+  "main": "pipe-contract.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KevinGrandon/pipe-contract.git"
+  },
+  "author": "Kevin Grandon <kevingrandon@yahoo.com>",
+  "license": "MPL",
+  "bugs": {
+    "url": "https://github.com/KevinGrandon/pipe-contract/issues"
+  },
+  "homepage": "https://github.com/KevinGrandon/pipe-contract"
+}
