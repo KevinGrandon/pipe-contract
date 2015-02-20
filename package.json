@@ -12,5 +12,8 @@
   "bugs": {
     "url": "https://github.com/KevinGrandon/pipe-contract/issues"
   },
-  "homepage": "https://github.com/KevinGrandon/pipe-contract"
+  "homepage": "https://github.com/KevinGrandon/pipe-contract",
+  "dependencies": {
+    "pipe-core": "^1.0.1"
+  }
 }
