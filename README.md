@@ -28,20 +28,26 @@ var contract = {
     args: {
       filter: Object
     },
-    contexts: ['SharedWorker']
+    context: 'SharedWorker'
   },
   getOne: {
     args: {
       id: Number
     },
-    contexts: ['Worker']
+    context: 'Worker'
   },
   save: {
     args: {
       id: Number,
       name: String
     },
-    contexts: ['SharedWorker']
+    context: 'SharedWorker'
+  },
+  cacheInfo: {
+    args: {
+      id: String
+    },
+    context: 'ServiceWorker'
   }
 };
 ```
