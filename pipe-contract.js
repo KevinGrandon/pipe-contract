@@ -25,7 +25,7 @@ var PipeContract = {
       // ...
 
       // Return the original response.
-      return oldRequest(resource, params);
+      return oldRequest.apply(pipe, Array.slice(arguments));
     };
   }
 };

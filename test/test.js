@@ -1,6 +1,6 @@
 'use strict';
 
-suite('contract', function() {
+suite('contract > ', function() {
 
   setup(function() {
     this.sinon = sinon.sandbox.create();
@@ -10,20 +10,41 @@ suite('contract', function() {
     this.sinon.restore();
   });
 
-  suite('validates context', function() {
+  suite('validates context > ', function() {
+    var pipe;
+
+    var contract = {
+      getAll: {
+        args: {
+          filter: Object
+        },
+        context: 'Worker'
+      }
+    };
+
     setup(function() {
+      pipe = new Pipe({src: '/base/test/worker.js'});
+      PipeContract.implement(pipe, contract);
     });
 
     teardown(function() {
-      
+      pipe.terminate();
     });
 
     test('valid context', function(done) {
-      done();
+      pipe.request('getAll').then(results => {
+        assert.equal(results.length, 3);
+        done();
+      });
     });
 
     test('invalid context', function(done) {
-      done();
+      try {
+        pipe.request('INVALIDMETHOD').then(() => {});
+      } catch(e) {
+        // Should throw an error
+        done();
+      }
     });
   });
 

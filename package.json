@@ -24,6 +24,6 @@
     "karma-sinon-chai": "^0.3.0",
     "mocha": "^2.1.0",
     "mozilla-download": "^0.4.6",
-    "pipe-core": "^1.0.1"
+    "pipe-core": "^1.0.2"
   }
 }

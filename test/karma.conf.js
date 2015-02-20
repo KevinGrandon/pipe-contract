@@ -18,7 +18,7 @@ module.exports = function(config) {
     },
 
     files: [
-      'nope_modules/pipe-core/pipe.js',
+      'node_modules/pipe-core/pipe.js',
       'pipe-contract.js',
       {
         pattern: 'test/worker.js',
