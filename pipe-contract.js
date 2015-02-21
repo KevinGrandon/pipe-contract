@@ -3,31 +3,53 @@
  */
 var PipeContract = {
 
+  _getDefinition: function(contract, resource) {
+    if (!contract || !Object.keys(contract)) {
+      throw new Error('Empty contract supplied.');
+    }
+
+    var definition = contract[resource];
+
+    // Validate that we have a definition for this resource.
+    if (!definition) {
+      throw new Error('Resource not found in contract.');
+    }
+
+    return definition;
+  },
+
   /**
    * Implements and enforces a contract on a pipe object.
    * @param {Object} pipe An instantiated communication pipe from pipe-core.
    * @param {Object} contract A contract mapping events to definitions.
    */
   implement: function(pipe, contract) {
+    // Update pipe.handle.
+    var oldHandle = pipe.handle;
+    pipe.handle = function(resource, params) {
+      var definition = PipeContract._getDefinition(contract, resource);
+
+      // Validate worker context.
+      // TODO...
+
+      // Validate param list.
+      // TODO...
+
+      // Return the original response.
+      return oldHandle.apply(pipe, Array.slice(arguments));
+    };
+
+
     // Update pipe.request.
     var oldRequest = pipe.request;
     pipe.request = function(resource, params) {
 
-      if (!contract || !Object.keys(contract)) {
-        throw new Error('Empty contract supplied.');
-      }
-
-      var definition = contract[resource];
-
-      // Validate that we have a definition for this resource.
-      if (!definition) {
-        throw new Error('Resource not found in contract.');
-      }
-
-      // Validate param list.
-      // ...
+      var definition = PipeContract._getDefinition(contract, resource);
 
       // Validate worker context.
+      // TODO...
+
+      // Validate param list.
       if (definition.args) {
         for (var i in definition.args) {
           if (!params || !params[i]) {

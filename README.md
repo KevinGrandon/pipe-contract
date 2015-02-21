@@ -11,7 +11,7 @@ bower install KevinGrandon/pipe-contract
 
 ## Example Usage
 
-*Include pipe-contract.js in your page*
+**Include pipe-contract.js in your page**
 ```
 <script defer src="/bower_components/pipe-core/pipe.js"></script>
 <script defer src="/bower_components/pipe-contract/pipe-contract.js"></script>
@@ -23,6 +23,16 @@ bower install KevinGrandon/pipe-contract
 var pipe = new Pipe();
 PipeContract.implement(pipe, contract);
 ```
+
+**Or if using a worker**
+```js
+importScripts('/bower_components/pipe-core/pipe.js');
+importScripts('/bower_components/pipe-core/pipe-contract.js');
+
+var pipe = new Pipe();
+PipeContract.implement(pipe, contract);
+```
+
 
 **Example Contract Syntax**
 
