@@ -1,6 +1,6 @@
 {
   "name": "pipe-contract",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Contract implementation for pipe-core. Validates methods and arguments for pipe events.",
   "main": "pipe-contract.js",
   "repository": {
