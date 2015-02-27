@@ -12,7 +12,7 @@ bower install KevinGrandon/pipe-contract
 ## Example Usage
 
 **Include pipe-contract.js in your page**
-```
+```html
 <script defer src="/bower_components/pipe-core/pipe.js"></script>
 <script defer src="/bower_components/pipe-contract/pipe-contract.js"></script>
 ```
